@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -18,6 +19,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.math.log
 
 /**
@@ -29,7 +32,6 @@ class GameHistoryFragment : Fragment() {
     private val mainScope = CoroutineScope(Dispatchers.Main)
     private val games = arrayListOf<Game>()
     private val gamesHistoryAdapter = GamesHistoryAdapter(games)
-
 
 
     override fun onCreateView(
@@ -56,7 +58,10 @@ class GameHistoryFragment : Fragment() {
           findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
 
+
     }
+
+
 
     private fun initRv() {
 

@@ -53,7 +53,7 @@
         <TextView
             android:id="@+id/statsTxt"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="38dp"
             android:text="@string/winOrLose"
             android:textAlignment="center" />
 
@@ -70,7 +70,7 @@
                 app:srcCompat="@drawable/paper" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/resultTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:layout_weight="1"
@@ -80,7 +80,7 @@
                 android:textSize="36sp" />
 
             <ImageView
-                android:id="@+id/imgPlayer"
+                android:id="@+id/imgPlayerStart"
                 android:layout_width="80dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"

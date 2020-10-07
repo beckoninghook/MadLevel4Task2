@@ -36,14 +36,14 @@ class GamesHistoryAdapter (private val games: List<Game>) : RecyclerView.Adapter
             }
 
             if (game.playerResult == "PAPER"){
-                itemView.imgPlayer.setImageResource(R.drawable.paper)
+                itemView.imagePlayer.setImageResource(R.drawable.paper)
             }
             if (game.playerResult == "ROCK"){
-                itemView.imgPlayer.setImageResource(R.drawable.rock)
+                itemView.imagePlayer.setImageResource(R.drawable.rock)
             }
 
             if (game.playerResult == "SCISSOR"){
-                itemView.imgPlayer.setImageResource(R.drawable.scissors)
+                itemView.imagePlayer.setImageResource(R.drawable.scissors)
             }
         }
     }
