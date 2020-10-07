@@ -28,6 +28,7 @@
         app:layout_constraintVertical_bias="0.643" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvGameHistory"
         android:layout_width="409dp"
         android:layout_height="460dp"
         android:layout_marginStart="1dp"

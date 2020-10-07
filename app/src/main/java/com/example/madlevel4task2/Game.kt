@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "product_table")
+@Entity(tableName = "game_table")
 data class Game(
     @ColumnInfo(name = "computerResult")
     var computerResult : Result,
@@ -13,6 +13,8 @@ data class Game(
     var playerResult : Result,
     @ColumnInfo(name = "date")
     var date : String,
+    @ColumnInfo(name = "finalScore")
+    var finalScore : FinalScore,
 
 
 

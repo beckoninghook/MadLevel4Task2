@@ -13,6 +13,10 @@ import androidx.navigation.fragment.findNavController
  */
 class GameFragment : Fragment() {
 
+    private lateinit var gameRepository: GameRepository
+
+    
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
