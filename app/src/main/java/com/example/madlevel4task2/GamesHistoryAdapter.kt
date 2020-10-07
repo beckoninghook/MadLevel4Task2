@@ -22,27 +22,27 @@ class GamesHistoryAdapter (private val games: List<Game>) : RecyclerView.Adapter
 
         @SuppressLint("SimpleDateFormat")
         fun databind(game: Game) {
-            itemView.txtResult.text = game.finalScore.toString()
+            itemView.txtResult.text = game.finalScore
             itemView.txtDate.text = SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()).toString()
-            if (game.computerResult == Result.PAPER){
+            if (game.computerResult == "PAPER"){
                 itemView.imgComputer.setImageResource(R.drawable.paper)
             }
-            if (game.computerResult == Result.ROCK){
+            if (game.computerResult == "ROCK"){
                 itemView.imgComputer.setImageResource(R.drawable.rock)
             }
 
-            if (game.computerResult == Result.SCISSOR){
+            if (game.computerResult == "SCISSOR"){
                 itemView.imgComputer.setImageResource(R.drawable.scissors)
             }
 
-            if (game.playerResult == Result.PAPER){
+            if (game.playerResult == "PAPER"){
                 itemView.imgPlayer.setImageResource(R.drawable.paper)
             }
-            if (game.playerResult == Result.ROCK){
+            if (game.playerResult == "ROCK"){
                 itemView.imgPlayer.setImageResource(R.drawable.rock)
             }
 
-            if (game.playerResult == Result.SCISSOR){
+            if (game.playerResult == "SCISSOR"){
                 itemView.imgPlayer.setImageResource(R.drawable.scissors)
             }
         }
