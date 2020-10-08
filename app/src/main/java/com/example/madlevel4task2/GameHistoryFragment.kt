@@ -2,24 +2,18 @@ package com.example.madlevel4task2
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
-import androidx.navigation.findNavController
+import android.widget.Toolbar
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.math.log
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -58,10 +52,6 @@ class GameHistoryFragment : Fragment() {
           findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
 
-        view.findViewById<Button>(R.id.delete).setOnClickListener {
-            deleteAll()
-        }
-
 
     }
 
@@ -71,20 +61,33 @@ class GameHistoryFragment : Fragment() {
                 gameRepository.deleteAllGames()
             }
             this@GameHistoryFragment.games.clear()
-          
+
             this@GameHistoryFragment.gamesHistoryAdapter.notifyDataSetChanged()
         }
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        println("faka")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true);
+        activity?.title = "Your game history"
 
-        menu.clear()
-
-        inflater.inflate(R.menu.menu_history, menu)
-        //super.onCreateOptionsMenu(menu, inflater)
     }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.menu_history, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        println(item)
+        if (item.toString() == "delete"){
+            deleteAll()
+        }
+        return true;
+    }
+
 
 
 

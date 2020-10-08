@@ -44,20 +44,16 @@ class GameFragment : Fragment() {
         gameRepository = GameRepository(requireContext())
 
 
-        view.findViewById<ImageButton>(R.id.btnHistory).setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
+
 
         view.findViewById<ImageButton>(R.id.btnRock).setOnClickListener {
             play(results[0], view)
-
             img.setImageResource(R.drawable.rock)
             getStats(view)
         }
 
         view.findViewById<ImageButton>(R.id.btnPaper).setOnClickListener {
             play(results[1] , view)
-
             img.setImageResource(R.drawable.paper)
             getStats(view)
         }
@@ -144,25 +140,33 @@ class GameFragment : Fragment() {
             }
         }
 
-        view.findViewById<TextView>(R.id.resultTxt).text = score;
+        view.findViewById<TextView>(R.id.statsTxt).text = score;
         val game = Game(result  ,computerResult , Date().toString() ,  score)
         addGame(game)
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu , menuInflate : MenuInflater) {
-        println(menu)
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflate.inflate(R.menu.menu_main, menu)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true);
+        activity?.title = "Your game history"
 
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.menu_main, menu)
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         println(item)
-        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        return true
+        if (item.toString() == "history"){
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+        return true;
     }
+
 
     private fun addGame(game: Game) {
             mainScope.launch {
