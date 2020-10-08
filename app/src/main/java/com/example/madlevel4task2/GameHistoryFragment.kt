@@ -66,7 +66,15 @@ class GameHistoryFragment : Fragment() {
     }
 
     private fun deleteAll(){
-        
+        mainScope.launch {
+            val shoppingList = withContext(Dispatchers.IO) {
+                gameRepository.deleteAllGames()
+            }
+            this@GameHistoryFragment.games.clear()
+          
+            this@GameHistoryFragment.gamesHistoryAdapter.notifyDataSetChanged()
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
