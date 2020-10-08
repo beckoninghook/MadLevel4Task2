@@ -1,10 +1,8 @@
 package com.example.madlevel4task2
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
@@ -39,11 +37,12 @@ class GameHistoryFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_history, container, false)
 
-
-
     }
+
+
 
 
 
@@ -59,8 +58,27 @@ class GameHistoryFragment : Fragment() {
           findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
 
+        view.findViewById<Button>(R.id.delete).setOnClickListener {
+            deleteAll()
+        }
+
 
     }
+
+    private fun deleteAll(){
+        
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        println("faka")
+
+        menu.clear()
+
+        inflater.inflate(R.menu.menu_history, menu)
+        //super.onCreateOptionsMenu(menu, inflater)
+    }
+
+
 
 
 

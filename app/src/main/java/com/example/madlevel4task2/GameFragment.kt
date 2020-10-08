@@ -1,19 +1,20 @@
 package com.example.madlevel4task2
 
-import android.media.Image
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.*
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.*
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
+
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -23,6 +24,9 @@ class GameFragment : Fragment() {
     private lateinit var gameRepository: GameRepository
     private val results = arrayListOf("ROCK" , "PAPER" , "SCISSORS")
     private val mainScope = CoroutineScope(Dispatchers.Main)
+    var drawAmount = "";
+    var lostAmount = "";
+    var winAmount = "";
 
 
     override fun onCreateView(
@@ -36,6 +40,7 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var img = view.findViewById<ImageView>(R.id.imgPlayerStart)
+
         gameRepository = GameRepository(requireContext())
 
 
@@ -47,22 +52,46 @@ class GameFragment : Fragment() {
             play(results[0], view)
 
             img.setImageResource(R.drawable.rock)
+            getStats(view)
         }
 
         view.findViewById<ImageButton>(R.id.btnPaper).setOnClickListener {
             play(results[1] , view)
 
             img.setImageResource(R.drawable.paper)
+            getStats(view)
         }
 
         view.findViewById<ImageButton>(R.id.btnScissors).setOnClickListener {
             play(results[2] , view)
             img.setImageResource(R.drawable.scissors)
-
+            getStats(view)
         }
+
+
 
     }
 
+    @SuppressLint("SetTextI18n")
+    fun getStats(view : View) {
+        mainScope.launch {
+            val wAmount = withContext(Dispatchers.IO) {
+                gameRepository.getWinCount()
+            }
+
+            val lAmount = withContext(Dispatchers.IO) {
+                gameRepository.getLostcount()
+            }
+
+            val dAmount = withContext(Dispatchers.IO) {
+                gameRepository.getDrawCount()
+            }
+
+            var stats = view.findViewById<TextView>(R.id.statsTitleTxt2)
+            stats.text = " wins: $wAmount lost: $lAmount Draw $dAmount"
+        }
+
+    }
 
     private fun play(result : String , view : View){
 
@@ -116,9 +145,23 @@ class GameFragment : Fragment() {
         }
 
         view.findViewById<TextView>(R.id.resultTxt).text = score;
-        val game = Game(result  ,computerResult , SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()).toString() ,  score)
+        val game = Game(result  ,computerResult , Date().toString() ,  score)
         addGame(game)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu , menuInflate : MenuInflater) {
+        println(menu)
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflate.inflate(R.menu.menu_main, menu)
+
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        println(item)
+        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        return true
     }
 
     private fun addGame(game: Game) {

@@ -8,18 +8,17 @@ import androidx.room.TypeConverters
 
 @Entity(tableName = "game_table")
 data class Game(
-    @TypeConverters
+
     @ColumnInfo(name = "computerResult")
     public var computerResult : String,
 
-    @TypeConverters
     @ColumnInfo(name = "playerResult")
     public var playerResult : String,
 
     @ColumnInfo(name = "date")
     var date : String,
 
-    @TypeConverters
+
     @ColumnInfo(name = "finalScore")
     public var finalScore : String,
 

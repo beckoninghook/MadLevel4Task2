@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageButton
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,17 +15,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
-        val actionBar = supportActionBar
-
-        actionBar!!.title = "Mad Level 4 Task 2"
-
-        actionBar.setDisplayHomeAsUpEnabled(true)
-        actionBar.setDisplayHomeAsUpEnabled(true)
 
     }
 
-    override fun onNavigateUp(): Boolean {
-            onBackPressed()
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
+
+
+
+
 }

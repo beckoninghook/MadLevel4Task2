@@ -23,7 +23,7 @@ class GamesHistoryAdapter (private val games: List<Game>) : RecyclerView.Adapter
         @SuppressLint("SimpleDateFormat")
         fun databind(game: Game) {
             itemView.txtResult.text = game.finalScore
-            itemView.txtDate.text = SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()).toString()
+            itemView.txtDate.text = game.date
             if (game.computerResult == "PAPER"){
                 itemView.imgComputer.setImageResource(R.drawable.paper)
             }

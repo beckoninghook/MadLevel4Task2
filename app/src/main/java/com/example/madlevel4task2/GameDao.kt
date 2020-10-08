@@ -17,4 +17,13 @@ interface GameDao {
 
     @Query("DELETE FROM game_table")
     suspend fun deleteAllProducts()
+
+    @Query("SELECT COUNT(finalScore) FROM game_table WHERE finalScore = 'won' ")
+    suspend fun getWinCount() : String
+
+    @Query("SELECT COUNT(finalScore) FROM game_table WHERE finalScore = 'lost' ")
+    suspend fun getLostCount() : String
+
+    @Query("SELECT COUNT(finalScore) FROM game_table WHERE finalScore = 'draw' ")
+    suspend fun getDrawCount(): String
 }
