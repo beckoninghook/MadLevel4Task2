@@ -42,6 +42,7 @@ class GameHistoryFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_history, container, false)
 
 
+
     }
 
 
@@ -76,7 +77,7 @@ class GameHistoryFragment : Fragment() {
     private fun getGameHistoryFromDatabase() {
         mainScope.launch {
             val shoppingList = withContext(Dispatchers.IO) {
-                gameRepository.getAllProducts()
+                gameRepository.getAllGames()
             }
             this@GameHistoryFragment.games.clear()
             this@GameHistoryFragment.games.addAll(shoppingList)

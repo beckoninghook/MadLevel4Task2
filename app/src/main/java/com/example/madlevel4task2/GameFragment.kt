@@ -124,7 +124,7 @@ class GameFragment : Fragment() {
     private fun addGame(game: Game) {
             mainScope.launch {
                 withContext(Dispatchers.IO) {
-                    gameRepository.insertProduct(game)
+                    gameRepository.insertGame(game)
                 }
             }
         }
